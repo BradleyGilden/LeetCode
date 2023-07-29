@@ -14,7 +14,7 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
 
     *returnSize = 2;
 
-    int *arr = (int*)malloc(*returnSize * sizeof(int)); 
+    int *arr = malloc(*returnSize * sizeof(int)); 
 
     for (i = 0; i < numsSize - 1; i++)
     {
