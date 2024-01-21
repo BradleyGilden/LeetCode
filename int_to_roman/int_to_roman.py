@@ -31,12 +31,12 @@ def intToRoman(num: int) -> str:
             res.append(romanDict[n + ('0' * multiplier)])
         elif n > '5':
             res.append(romanDict['5' + ('0' * multiplier)])
-            [res.append(romanDict['1' + ('0' * multiplier)]) for _ in range(int(n) - 5)]
+            res.extend([romanDict['1' + ('0' * multiplier)] for _ in range(int(n) - 5)])
         else:
-            [res.append(romanDict['1' + ('0' * multiplier)]) for _ in range(int(n))]
+            res.extend([romanDict['1' + ('0' * multiplier)] for _ in range(int(n))])
         multiplier -= 1
     return ''.join(res)
 
 
 if __name__ == '__main__':
-    print(intToRoman(423))
+    print(intToRoman(58))
