@@ -9,21 +9,36 @@ from typing import List
 
 def threeSum(nums: List[int]) -> List[List[int]]:
     """returns list of combinations of 3 ints that have a sum = 0"""
+    nums.sort()
     length = len(nums)
     res = []
-    for i in range(length):
-        for j in range(length):
-            if (i == j):
-                continue
-            for k in range(length):
-                test = sorted([nums[i], nums[j], nums[k]])
-                # filter out used combination
-                if (k == i or k == j):
-                    continue
-                if (nums[i] + nums[j] + nums[k] == 0):
-                    status = all(s != test for s in res)
-                    if (res and status or not res):
-                        res.append(test)
+
+    for i in range(length - 2):
+        # Skip duplicate elements
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+
+        left, right = i + 1, length - 1
+
+        while left < right:
+            total = nums[i] + nums[left] + nums[right]
+
+            if total < 0:
+                left += 1
+            elif total > 0:
+                right -= 1
+            else:
+                res.append([nums[i], nums[left], nums[right]])
+
+                # Skip duplicate elements
+                while left < right and nums[left] == nums[left + 1]:
+                    left += 1
+                while left < right and nums[right] == nums[right - 1]:
+                    right -= 1
+
+                left += 1
+                right -= 1
+
     return res
 
 
