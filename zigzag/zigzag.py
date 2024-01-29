@@ -32,4 +32,5 @@ def convert(s: str, numRows: int):
     return ''.join(zlist)
 
 
-print(convert("PAYPALISHIRING", 6))
+if __name__ == '__main__':
+    print(convert("PAYPALISHIRING", 4))
