@@ -1,3 +1,8 @@
+"""
+solution using peaks and relative peaks
+"""
+
+
 def convert(s: str, numRows: int):
     """creates zig zag pattern from string"""
     size = len(s)
@@ -5,32 +10,26 @@ def convert(s: str, numRows: int):
         return s
     zlist = []
     counter = 1
-    increment = False
-    tp = numRows
+    peak = 2 * numRows - 1  # 2n -1
+
     for i in range(numRows):
-        counter = 1
-        increment = False
-        if (i == numRows - 1):
-            tp = numRows
+        counter = i + 1 if i != numRows - 1 else 1
+        rpeak = 1 + i  # related peak
         for j in range(i, size):
-            # set the first turning point whenever counter is 1
-            if (counter == 1):
-                increment = not increment
-            print(counter, s[j])
-            # append when counter has reached 1
-            if counter == 1:
-                zlist.append(s[j])
-            # set the second turning point at numrows, and continue to
-            # decrease it by a factor of one, and reset at the start of the
-            # last row
-            if counter == tp:
-                increment = not increment
-            if increment:
-                counter += 1
+            if (i == 0 or i == numRows - 1):
+                if (counter == peak or counter == 1):
+                    zlist.append(s[j])
+                    counter = 1
             else:
-                counter -= 1
-        tp -= 1
+                if (j == i or counter == rpeak):
+                    zlist.append(s[j])
+                    # changed to the new relative peak once met
+                    rpeak = peak - i if rpeak == 1 + i else 1 + i
+                if (counter == peak):
+                    counter = 1
+            counter += 1
+
     return ''.join(zlist)
 
 
-print(convert("PAYPALISHIRING", 4))
+print(convert("PAYPALISHIRING", 6))
