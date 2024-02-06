@@ -12,24 +12,23 @@ cba
 cab
 """
 
+
 def permutations(s: str):
     """create permutations of a string"""
-    used = set()
     strlen = len(s)
-    perm = []
-    def permutate(s: str, used: set):
+
+    def permutate(s: str, used: set = set(), perm: list = []):
+        if (len(used) == strlen):
+            print(''.join(perm))
         for i in range(strlen):
             if (s[i] not in used):
                 perm.append(s[i])
                 used.add(s[i])
-                if (len(used) == strlen):
-                    print(''.join(perm))
-                else:
-                    permutate(s, used)
-            perm.pop()
-            used.remove(s[i])
-    permutate(s, used)
+                permutate(s, used)
+                perm.pop()
+                used.remove(s[i])
+    permutate(s)
 
 
 if __name__ == '__main__':
-    permutations("abc")
+    permutations("abcd")
