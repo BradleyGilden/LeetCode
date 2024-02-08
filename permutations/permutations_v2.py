@@ -17,10 +17,9 @@ def permutations(nums):
                 perm.append(nums[i])
                 used.add(nums[i])
                 if (len(used) == llen):
-                    print(perm)
                     result.append(perm.copy())
                 else:
-                    permutate(nums, used)
+                    permutate(nums, used, perm)
                 perm.pop()
                 used.remove(nums[i])
     permutate(nums)
