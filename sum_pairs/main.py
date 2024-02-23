@@ -4,20 +4,21 @@
 sum pairs implementation
 """
 
+
 def sum_pair(nums, target):
     """ find a pair in nums that equate to the target
     """
     pairs = []
     numslen = len(nums)
     for i in range(numslen):
-        for j in range(i + 1, numslen - 1):
+        for j in range(i + 1, numslen):
             if (nums[i] + nums[j] == target):
                 pairs.append([nums[i], nums[j]])
     return pairs
 
 
 if __name__ == '__main__':
-    sp = sum_pair([8, 7, 2, 5, 3, 1], 10)
+    sp = sum_pair([3, 2, 4], 6)
 
     if sp:
         for pairs in sp:
