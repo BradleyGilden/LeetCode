@@ -1,6 +1,15 @@
 function Evaporator([double]$content, [double]$evapperday, [double]$threshold) {
-    # your code
+    $currentContent = $content
+    $thresholdAmount = $threshold / 100 * $currentContent
+    $days = 0
+    while ($currentContent -gt $thresholdAmount) {
+        $currentContent = $currentContent - ($evapperday / 100 * $currentContent)
+        Write-Host $currentContent
+        $days++
+    }
+
+    return $days
 }
 
-Evaporator 10 10 10 22
-Evaporator 10 10 5 29
+Evaporator 10 10 10  # 22
+Evaporator 10 10 5  # 29
