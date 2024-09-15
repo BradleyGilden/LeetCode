@@ -4,7 +4,6 @@ function Evaporator([double]$content, [double]$evapperday, [double]$threshold) {
     $days = 0
     while ($currentContent -gt $thresholdAmount) {
         $currentContent = $currentContent - ($evapperday / 100 * $currentContent)
-        Write-Host $currentContent
         $days++
     }
 
